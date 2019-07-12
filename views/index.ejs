@@ -1,8 +1,45 @@
+<h1>Add people</h1>
+<form method="post" action="/person/add">
+    <label>Name</label><br>
+    <input type="text" name="name">
+    <br>
+    <label>Role</label><br>
+    <input type="text" name="role">
+    <br>
+    <label>Organization</label><br>
+    <input type="text" name="org">
+    <br><br>
+    <input type="submit" value="submit"><br>
+</form>
+
+<h1>Delete people</h1>
+<form method="post" action="/person/del">
+    <label>Name</label><br>
+    <input type="text" name="name">
+    <br><br>
+    <input type="submit" value="submit"><br><br>
+</form>
+
+<h1>Establish relationships</h1>
+<form method="post" action="/person/link">
+    <label>Name 1</label><br>
+    <input type="text" name="name1">
+    <br>
+    <label>Relationship</label><br>
+    <input type="text" name="connect">
+    <br>
+    <label>Name 2</label><br>
+    <input type="text" name="name2">
+    <br><br>
+    <input type="submit" value="submit"><br><br>
+</form>
+
 <h1>Information</h1>
 <ul>
     <% people.forEach(function(person){ %>
     <li>
         <%= person.title %><br>
+        <%= person.role %><br>
         <%= person.org %><br>
     </li>
     <% }) %>

@@ -26,22 +26,61 @@ app.get('/', function (req, res) {
                 peopleArr.push({
                     id: record._fields[0].identity.low,
                     title: record._fields[0].properties.name,
+                    role: record._fields[0].properties.role,
                     org: record._fields[0].properties.organization,
                 })
             })
 
-            session
-                .run("MATCH (n { name: 'ram' }) DETACH DELETE n")//substitute for own query
-                .then(function (result) {
-                    console.log(result)
-                })
-                .catch(function (err) {
-                    console.log(err)
-                })
-
             res.render('index.ejs', {
                 people: peopleArr
             })
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+})
+
+app.post('/person/add', function (req, res) {
+    var name1 = req.body.name;
+    var rol1 = req.body.role
+    var org1 = req.body.org;
+
+    session
+        .run("CREATE(n:person {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
+        .then(function (result) {
+            res.redirect('/')
+            session.close()
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+
+    res.redirect('/')
+})
+
+app.post('/person/del', function (req, res) {
+    var name2 = req.body.name;
+    session
+        .run("MATCH (n { name: {nameParam} }) DETACH DELETE n", { nameParam: name2 })
+        .then(function (result) {
+            res.redirect('/')
+            session.close()
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+})
+
+app.post('/person/link', function (req, res) {
+    var name1 = req.body.name1;
+    var connect = req.body.connect;
+    var name2 = req.body.name2;
+
+    session
+        .run("MATCH (a:person),(b:person) WHERE a.name = {name1Param} AND b.name = {name2Param} CREATE (a)-[r:friend]->(b)", { name1Param: name1, name2Param: name2 })
+        .then(function (result) {
+            res.redirect('/')
+            session.close()
         })
         .catch(function (err) {
             console.log(err)
