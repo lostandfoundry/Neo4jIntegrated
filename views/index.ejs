@@ -1,49 +1,118 @@
-<h1>Add an entity</h1>
-<form method="post" action="/person/add">
-    <label>Type (One among person,pet or other)</label><br>
-    <input type="text" name="type">
-    <br>
-    <label>Name</label><br>
-    <input type="text" name="name">
-    <br>
-    <label>Role</label><br>
-    <input type="text" name="role">
-    <br>
-    <label>Organization</label><br>
-    <input type="text" name="org">
-    <br><br>
-    <input type="submit" value="submit"><br>
-</form>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lost&Found</title>
+    <meta name="description" content="Find your near and dear ones in case of a natural calamity.">
+    <meta name="keywords" content="Find your near and dear ones in case of a natural calamity.">
 
-<h1>Delete people</h1>
-<form method="post" action="/person/del">
-    <label>Name</label><br>
-    <input type="text" name="name">
-    <br><br>
-    <input type="submit" value="submit"><br><br>
-</form>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+    <link rel="stylesheet" type="text/css" href="../public/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../public/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../public/style.css">
+</head>
 
-<h1>Establish relationships</h1>
-<form method="post" action="/person/link">
-    <label>Name 1 </label><br>
-    <input type="text" name="name1">
-    <br><br>
-    <label>Relationship (One among friend,colleague,relative,owner,neighbour or other)</label><br>
-    <input type="text" name="connect">
-    <br><br>
-    <label>Name 2 (if relationship is pet, name of pet to be specified here)</label><br>
-    <input type="text" name="name2">
-    <br><br>
-    <input type="submit" value="submit"><br><br>
-</form>
+<body>
+    <h1>Add an entity</h1>
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="ser-title">Add your details</h2>
+                    <hr class="botm-line">
+                </div>
 
-<h1>Information</h1>
-<ul>
-    <% people.forEach(function(person){ %>
-    <li>
-        <%= person.title %><br>
-        <%= person.role %><br>
-        <%= person.org %><br>
-    </li>
-    <% }) %>
-</ul>
+                <div class="col-md-8 col-sm-8 marb20">
+                    <div class="contact-info">
+                        <h3 class="cnt-ttl"></h3>
+                        <div class="space"></div>
+                        <div id="sendmessage">Your request is being processed. Please verify correctedness
+                            by checking the graph on the right.
+                        </div>
+                        <div id="errormessage">Some of the credentials you submitted are not correct.
+                            Please resubmit your data.</div>
+                        <form action="/peron/add" method="post" role="form" class="contactForm">
+                            <div class="form-group">
+                                <label>Type</label>
+                                <input type="text" name="type" class="form-control br-radius-zero" id="type"
+                                    placeholder="Account type" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control br-radius-zero" id="name"
+                                    placeholder="Your Name" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control br-radius-zero" name="email" id="email"
+                                    placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Role</label>
+                                <input class="form-control br-radius-zero" type="text" name="role" data-rule="required"
+                                    data-msg="Enter your role" placeholder="Your Role"></input>
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Organization</label>
+                                <input class="form-control br-radius-zero" type="text" name="org" data-rule="required"
+                                    data-msg="Enter your Organization" placeholder="Your Oragnization"></input>
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-action">
+                                <button type="submit" value="submit" class="btn btn-form">Create node</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h1>Delete people</h1>
+    <form method="post" action="/person/del">
+        <label>Name</label><br>
+        <input type="text" name="name">
+        <br><br>
+        <input type="submit" value="submit"><br><br>
+    </form>
+
+    <h1>Establish relationships</h1>
+    <form method="post" action="/person/link">
+        <label>Name 1 </label><br>
+        <input type="text" name="name1">
+        <br><br>
+        <label>Relationship (One among friend,colleague,relative,owner,neighbour or other)</label><br>
+        <input type="text" name="connect">
+        <br><br>
+        <label>Name 2 (if relationship is pet, name of pet to be specified here)</label><br>
+        <input type="text" name="name2">
+        <br><br>
+        <input type="submit" value="submit"><br><br>
+    </form>
+
+    <h1>Information</h1>
+    <ul>
+        <% people.forEach(function(person){ %>
+        <li>
+            <%= person.title %><br>
+            <%= person.role %><br>
+            <%= person.org %><br>
+        </li>
+        <% }) %>
+    </ul>
+    <script src="../public/jquery.min.js"></script>
+    <script src="../public/jquery.easing.min.js"></script>
+    <script src="../public/bootstrap.min.js"></script>
+    <script src="../public/custom.js"></script>
+    <script src="../contactform/contactform.js"></script>
+</body>
+
+</html>
