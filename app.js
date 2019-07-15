@@ -8,14 +8,23 @@ var app = express();
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+app.set('public', path.join(__dirname, 'public'))
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(__dirname, "public"));
+app.use(express.static(__dirname + '/public'));
 
 var driver = neo4j.driver('bolt://hobby-nimcknmcieflgbkepkpnpidl.dbs.graphenedb.com:24787', neo4j.auth.basic('myapp', 'b.yntraNmvs9zf.OB5EVHINaBBWtc3M'))
 var session = driver.session()
+
+app.get("/search", (req, res) => {
+    res.render("search.ejs");
+});
+
+app.get("/claim", (req, res) => {
+    res.render("claim.ejs");
+});
 
 app.get('/', function (req, res) {
     session
@@ -46,17 +55,20 @@ app.post('/person/add', function (req, res) {
     var org1 = req.body.org;
     var type1 = req.body.type;
 
-    if (type1 === "person")
+    if (type1 === "person") {
         session
             .run("CREATE(n:person {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
+                alert("Created person node!")
                 res.redirect('/')
                 session.close()
             })
             .catch(function (err) {
+                res.redirect('/')
                 console.log(err)
             })
-    else if (type1 === "pet")
+    }
+    else if (type1 === "pet") {
         session
             .run("CREATE(n:pet {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
@@ -66,7 +78,8 @@ app.post('/person/add', function (req, res) {
             .catch(function (err) {
                 console.log(err)
             })
-    else
+    }
+    else {
         session
             .run("CREATE(n:other {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
@@ -76,13 +89,16 @@ app.post('/person/add', function (req, res) {
             .catch(function (err) {
                 console.log(err)
             })
-    res.redirect('/')
+        res.redirect('/')
+    }
 })
 
+
 app.post('/person/del', function (req, res) {
-    var name2 = req.body.name;
+    var name1 = req.body.name1;
+    var name2 = req.body.name2;
     session
-        .run("MATCH (n { name: {nameParam} }) DETACH DELETE n", { nameParam: name2 })
+        .run("MATCH (n { name: {nameParam1} })-[r]->(k {name: {nameParam2}}) DELETE r", { nameParam1: name1, nameParam2: name2 })
         .then(function (result) {
             res.redirect('/')
             session.close()

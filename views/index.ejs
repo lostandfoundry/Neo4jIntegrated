@@ -5,14 +5,147 @@
     <meta name="description" content="Find your near and dear ones in case of a natural calamity.">
     <meta name="keywords" content="Find your near and dear ones in case of a natural calamity.">
 
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
-    <link rel="stylesheet" type="text/css" href="../public/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../public/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../public/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-    <h1>Add an entity</h1>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <section id="banner" class="banner">
+        <div class="bg-color">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="./index.ejs"><img
+                                    src="/img/Screenshot from 2019-06-29 14-03-04.png" class="img-responsive"
+                                    style="width: 150px; margin-top: -27px;"></a>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/index">Home</a></li>
+                                <li><a href="/index">Services</a></li>
+                                <li><a href="/index">About</a></li>
+                                <li><a href="/index">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <div class="row">
+                    <div class="banner-info">
+                        <div class="banner-text text-center">
+                            <h1 class="white">Populate our graph.</h1>
+                            <p>In order for our proposed system to work, we must have to fill our database first.
+                                We do this before the disaster even occurs, in preparation for the worst.
+                            </p>
+                            <a href="/search" class="btn btn-appoint">Search for your near and dear ones</a>
+                            <a href="/claim" class="btn btn-appoint">Claim presence</a>
+                        </div>
+                        <div class="overlay-detail text-center">
+                            <a href="#about"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="section-title">
+                        <h2 class="head-title lg-line">Tips on<br>How to add in inforamtion<br></h2>
+                        <hr class="botm-line">
+                        <p class="sec-para">Add in your details for future use.</p>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <div style="visibility: visible;" class="col-sm-9 more-features-box">
+                        <div class="more-features-box-text">
+                            <div class="more-features-box-text-icon"> <i class="fa fa-angle-right"
+                                    aria-hidden="true"></i> </div>
+                            <div class="more-features-box-text-description">
+                                <h3>Relationships</h3>
+                                <p>While thinking about this project, we narrowed down on 5 relationships,
+                                    that effectively cover all possible human ties with other entities. Make sure
+                                    to stick by them while creating your graph relations.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="more-features-box-text">
+                            <div class="more-features-box-text-icon"> <i class="fa fa-angle-right"
+                                    aria-hidden="true"></i> </div>
+                            <div class="more-features-box-text-description">
+                                <h3>Delay</h3>
+                                <p>There might be a slight delay when it comes to adding nodes and relationships in
+                                    the graph. Please be patient.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="more-features-box-text">
+                            <div class="more-features-box-text-icon"> <i class="fa fa-angle-right"
+                                    aria-hidden="true"></i> </div>
+                            <div class="more-features-box-text-description">
+                                <h3>Rules and limitations</h3>
+                                <p>Maxmimum number of nodes per person is set to 1. Any duplicates will be periodcally
+                                    cleared.
+                                    There is upper bound on the number of relations is set to 15, however it becomes
+                                    imperative here to mention that multiple relations
+                                    between 2 nodes would serve absolutely no purpose.<br>
+                                    Nodes could be of the following types (case sensitive):-<br>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;person
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;pet
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;other
+                                        </li>
+                                    </ul>
+
+                                    Relationships could be of type (case sensitive):-<br>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;friend
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;relative
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;neighbour
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;colleague
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;owner
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-circle"></i>&nbsp;&nbsp;other
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="section-padding">
         <div class="container">
             <div class="row">
@@ -25,12 +158,9 @@
                     <div class="contact-info">
                         <h3 class="cnt-ttl"></h3>
                         <div class="space"></div>
-                        <div id="sendmessage">Your request is being processed. Please verify correctedness
-                            by checking the graph on the right.
-                        </div>
-                        <div id="errormessage">Some of the credentials you submitted are not correct.
-                            Please resubmit your data.</div>
-                        <form action="/peron/add" method="post" role="form" class="contactForm">
+                        <div id="sendmessage"></div>
+                        <div id="errormessage"></div>
+                        <form action="/person/add" method="post" role="form" class="contactform">
                             <div class="form-group">
                                 <label>Type</label>
                                 <input type="text" name="type" class="form-control br-radius-zero" id="type"
@@ -39,6 +169,7 @@
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
+
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control br-radius-zero" id="name"
                                     placeholder="Your Name" data-rule="minlen:4"
@@ -51,21 +182,18 @@
                                     placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                                 <div class="validation"></div>
                             </div>
-
                             <div class="form-group">
                                 <label>Role</label>
                                 <input class="form-control br-radius-zero" type="text" name="role" data-rule="required"
                                     data-msg="Enter your role" placeholder="Your Role"></input>
                                 <div class="validation"></div>
                             </div>
-
                             <div class="form-group">
                                 <label>Organization</label>
                                 <input class="form-control br-radius-zero" type="text" name="org" data-rule="required"
                                     data-msg="Enter your Organization" placeholder="Your Oragnization"></input>
                                 <div class="validation"></div>
                             </div>
-
                             <div class="form-action">
                                 <button type="submit" value="submit" class="btn btn-form">Create node</button>
                             </div>
@@ -76,43 +204,114 @@
         </div>
     </section>
 
-    <h1>Delete people</h1>
-    <form method="post" action="/person/del">
-        <label>Name</label><br>
-        <input type="text" name="name">
-        <br><br>
-        <input type="submit" value="submit"><br><br>
-    </form>
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="ser-title">Establish a relationship</h2>
+                    <hr class="botm-line">
+                </div>
 
-    <h1>Establish relationships</h1>
-    <form method="post" action="/person/link">
-        <label>Name 1 </label><br>
-        <input type="text" name="name1">
-        <br><br>
-        <label>Relationship (One among friend,colleague,relative,owner,neighbour or other)</label><br>
-        <input type="text" name="connect">
-        <br><br>
-        <label>Name 2 (if relationship is pet, name of pet to be specified here)</label><br>
-        <input type="text" name="name2">
-        <br><br>
-        <input type="submit" value="submit"><br><br>
-    </form>
+                <div class="col-md-8 col-sm-8 marb20">
+                    <div class="contact-info">
+                        <h3 class="cnt-ttl"></h3>
+                        <div class="space"></div>
+                        <div id="sendmessage"></div>
+                        <div id="errormessage"></div>
+                        <form action="/person/link" method="post" role="form" class="contactform">
+                            <div class="form-group">
+                                <label>Name 1</label>
+                                <input type="text" name="name1" class="form-control br-radius-zero" id="name1"
+                                    placeholder="Your Name" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
 
-    <h1>Information</h1>
+                            <div class="form-group">
+                                <label>Relationship</label>
+                                <input type="text" name="connect" class="form-control br-radius-zero" id="connect"
+                                    placeholder="Enter relation" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Name 2</label>
+                                <input type="text" name="name2" class="form-control br-radius-zero" id="name2"
+                                    placeholder="Enter the second name" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-action">
+                                <button type="submit" value="submit" class="btn btn-form">Create relation</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="ser-title">Delete a relationship</h2>
+                    <hr class="botm-line">
+                </div>
+
+                <div class="col-md-8 col-sm-8 marb20">
+                    <div class="contact-info">
+                        <h3 class="cnt-ttl"></h3>
+                        <div class="space"></div>
+                        <div id="sendmessage"></div>
+                        <div id="errormessage"></div>
+                        <form action="/person/del" method="post" role="form" class="contactform">
+                            <div class="form-group">
+                                <label>Name 1</label>
+                                <input type="text" name="name1" class="form-control br-radius-zero" id="name1"
+                                    placeholder="Your Name" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Name 2</label>
+                                <input type="text" name="name2" class="form-control br-radius-zero" id="name2"
+                                    placeholder="Enter the second name" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-action">
+                                <button type="submit" value="submit" class="btn btn-form">Delete relation</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<h1>Information</h1>
     <ul>
         <% people.forEach(function(person){ %>
         <li>
+            <i class="fa fa-circle"></i>&nbsp;&nbsp;
             <%= person.title %><br>
             <%= person.role %><br>
-            <%= person.org %><br>
+            <%= person.org %><br><br>
         </li>
         <% }) %>
-    </ul>
-    <script src="../public/jquery.min.js"></script>
-    <script src="../public/jquery.easing.min.js"></script>
-    <script src="../public/bootstrap.min.js"></script>
-    <script src="../public/custom.js"></script>
-    <script src="../contactform/contactform.js"></script>
+    </ul>-->
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/contactform/contactform.js"></script>
 </body>
 
 </html>
