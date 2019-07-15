@@ -49,6 +49,22 @@ app.get('/', function (req, res) {
         })
 })
 
+app.post('/search/person/find', function(req,res){
+    var name = req.body.name;
+    var role = req.body.role;
+    var org = req.body.org;
+    
+    session
+        .run("MATCH (n {name:{nameParam}, role:{roleParam}, organization:{orgParam}}) RETURN n",{nameParam:name,roleParam:role,orgParam:org})
+        .then(function(result){
+            console.log(result)
+            res.redirect('/search#about')
+            session.close()
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+})
 app.post('/person/add', function (req, res) {
     var name1 = req.body.name;
     var rol1 = req.body.role
@@ -59,7 +75,6 @@ app.post('/person/add', function (req, res) {
         session
             .run("CREATE(n:person {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
-                alert("Created person node!")
                 res.redirect('/')
                 session.close()
             })

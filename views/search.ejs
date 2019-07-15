@@ -112,6 +112,50 @@
         </div>
     </section>
 
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="ser-title">Provide the details</h2>
+                    <hr class="botm-line">
+                </div>
+
+                <div class="col-md-8 col-sm-8 marb20">
+                    <div class="contact-info">
+                        <h3 class="cnt-ttl"></h3>
+                        <div class="space"></div>
+                        <div id="sendmessage"></div>
+                        <div id="errormessage"></div>
+                        <form action="/search/person/find" method="post" role="form" class="contactform">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control br-radius-zero" id="name"
+                                    placeholder="Your Name" 
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Role</label>
+                                <input class="form-control br-radius-zero" type="text" name="role" 
+                                    data-msg="Enter your role" placeholder="Your Role"></input>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Organization</label>
+                                <input class="form-control br-radius-zero" type="text" name="org" 
+                                    data-msg="Enter your Organization" placeholder="Your Oragnization"></input>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-action">
+                                <button type="submit" value="submit" class="btn btn-form">Initiate Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer id="footer">
         <div class="top-footer">
             <div class="container">
