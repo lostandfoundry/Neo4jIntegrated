@@ -18,15 +18,15 @@ app.use(express.static(__dirname + '/public'));
 var driver = neo4j.driver('bolt://hobby-nimcknmcieflgbkepkpnpidl.dbs.graphenedb.com:24787', neo4j.auth.basic('myapp', 'b.yntraNmvs9zf.OB5EVHINaBBWtc3M'))
 var session = driver.session()
 
-app.get("/search", (req, res) => {
-    res.render("search.ejs");
-});
+app.get("/", (req,res)=>{
+    res.render("index.ejs");
+})
 
 app.get("/claim", (req, res) => {
     res.render("claim.ejs");
 });
 
-app.get('/', function (req, res) {
+app.get('/populate', function (req, res) {
     session
         .run('START n=node(*) RETURN n')
         .then(function (result) {
@@ -40,7 +40,7 @@ app.get('/', function (req, res) {
                 })
             })
 
-            res.render('index.ejs', {
+            res.render('populate.ejs', {
                 people: peopleArr
             })
         })
@@ -49,19 +49,50 @@ app.get('/', function (req, res) {
         })
 })
 
-app.post('/search/person/find', function (req, res) {
+app.get('/search', function (req, res) {
+    session
+        .run("START n=node(*) RETURN n")
+        .then(function (result) {
+            var peopleArr = []
+            result.records.forEach(function (record) {
+                peopleArr.push({
+                    id: record._fields[0].identity.low,
+                    title: record._fields[0].properties.name,
+                    safe: record._fields[0].properties.safe
+                })
+            })
+
+            res.render('search.ejs', {
+                people: peopleArr
+            })
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+})
+
+app.post('/search',function(req,res){
     var name = req.body.name;
     var role = req.body.role;
     var org = req.body.org;
 
     session
-        .run("MATCH (n {name:{nameParam}, role:{roleParam}, organization:{orgParam}}) RETURN n", { nameParam: name, roleParam: role, orgParam: org })
+        .run("MATCH (n {name:{nameParam}, role:{roleParam},organization:{orgParam}}) RETURN n",{nameParam:name,roleParam:role,orgParam:org})
         .then(function (result) {
-            console.log(result)
-            res.redirect('/search#about')
-            session.close()
+            var peopleArr = []
+            result.records.forEach(function (record) {
+                peopleArr.push({
+                    id: record._fields[0].identity.low,
+                    title: record._fields[0].properties.name,
+                    safe: record._fields[0].properties.safe
+                })
+            })
+
+            res.render('search.ejs', {
+                people: peopleArr
+            })
         })
-        .catch(function (err) {
+        .catch(function(err){
             console.log(err)
         })
 })
