@@ -36,10 +36,10 @@
                         </div>
                         <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                             <ul class="nav navbar-nav">
-                                <li><a href="/index">Home</a></li>
-                                <li><a href="/index">Services</a></li>
-                                <li><a href="/index">About</a></li>
-                                <li><a href="/index">Contact</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/">Services</a></li>
+                                <li><a href="/">About</a></li>
+                                <li><a href="/">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             <p>If you happen to run a relief camp, make the presence of everyone accounted for,
                                 such that their connections are assured of their safety.
                             </p>
-                            <a href="/index" class="btn btn-appoint">Add in your details</a>
+                            <a href="/" class="btn btn-appoint">Add in your details</a>
                             <a href="/search" class="btn btn-appoint">Search for your near and dear ones</a>
                         </div>
                         <div class="overlay-detail text-center">
@@ -116,6 +116,68 @@
         </div>
     </section>
 
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="ser-title">Claim presence of an entity</h2>
+                    <hr class="botm-line">
+                </div>
+                <div class="col-md-8 col-sm-8 marb20">
+                    <div class="contact-info">
+                        <h3 class="cnt-ttl"></h3>
+                        <div class="space"></div>
+                        <div id="sendmessage"></div>
+                        <div id="errormessage"></div>
+                        <form action="/claim/person/person" method="post" role="form" class="contactForm">
+                            <div class="form-group">
+                                <label>Name (if provided)</label>
+                                <input type="text" name="name" class="form-control br-radius-zero" id="name"
+                                    placeholder="Your Name" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Geo Location</label>
+                                <input type="text" name="geo" class="form-control br-radius-zero" id="geo"
+                                    placeholder="Your Location" data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Person Condition</label>
+                                <input type="text" class="form-control br-radius-zero" name="condition" id="condition"
+                                    placeholder="Person Condition" data-rule="minlen:4"
+                                    data-msg="Please enter at least 8 characters" />
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Custom Message</label>
+                                <textarea class="form-control br-radius-zero" name="custommsg" rows="5" id="custommsg"
+                                    data-rule="required" data-msg="Please specify relevant information"
+                                    placeholder="Please specify relevant information"></textarea>
+                                <div class="validation"></div>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Iris Scan/Birthmark Images</label>
+                                <input type="file" name="pic" accept="image/*">
+                            </div>
+
+                            <div class="form-action">
+                                <button type="submit" class="btn btn-form">Claim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <footer id="footer">
         <div class="top-footer">
             <div class="container">
@@ -132,9 +194,9 @@
                         </div>
                         <div class="info-sec">
                             <ul class="quick-info">
-                                <li><a href="./populate.html"><i class="fa fa-circle"></i>Add in your details</a></li>
-                                <li><a href="./search.html"><i class="fa fa-circle"></i>Initiate Search</a></li>
-                                <li><a href="./claim.html"><i class="fa fa-circle"></i>Claim presence of entity</a></li>
+                                <li><a href="/"><i class="fa fa-circle"></i>Add in your details</a></li>
+                                <li><a href="/search"><i class="fa fa-circle"></i>Initiate Search</a></li>
+                                <li><a href="/claim"><i class="fa fa-circle"></i>Claim presence of entity</a></li>
                             </ul>
                         </div>
                     </div>

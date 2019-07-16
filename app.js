@@ -49,19 +49,37 @@ app.get('/', function (req, res) {
         })
 })
 
-app.post('/search/person/find', function(req,res){
+app.post('/search/person/find', function (req, res) {
     var name = req.body.name;
     var role = req.body.role;
     var org = req.body.org;
-    
+
     session
-        .run("MATCH (n {name:{nameParam}, role:{roleParam}, organization:{orgParam}}) RETURN n",{nameParam:name,roleParam:role,orgParam:org})
-        .then(function(result){
+        .run("MATCH (n {name:{nameParam}, role:{roleParam}, organization:{orgParam}}) RETURN n", { nameParam: name, roleParam: role, orgParam: org })
+        .then(function (result) {
             console.log(result)
             res.redirect('/search#about')
             session.close()
         })
-        .catch(function(err){
+        .catch(function (err) {
+            console.log(err)
+        })
+})
+
+app.post('/claim/person/person', function (req, res) {
+    var name = req.body.name;
+    var geo = req.body.geo;
+    var condition = req.body.condition;
+    var custommsg = req.body.custommsg;
+
+    session
+        .run("MATCH (n { name: {nameParam} }) SET n.safe = true", { nameParam: name })
+        .then(function (result) {
+            console.log(result)
+            res.redirect('/claim#about')
+            session.close()
+        })
+        .catch(function (err) {
             console.log(err)
         })
 })
@@ -73,7 +91,7 @@ app.post('/person/add', function (req, res) {
 
     if (type1 === "person") {
         session
-            .run("CREATE(n:person {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
+            .run("CREATE(n:person {name:{nameParam},role:{rolParam},organization:{orgParam}, safe:true}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
                 res.redirect('/')
                 session.close()
@@ -85,7 +103,7 @@ app.post('/person/add', function (req, res) {
     }
     else if (type1 === "pet") {
         session
-            .run("CREATE(n:pet {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
+            .run("CREATE(n:pet {name:{nameParam},role:{rolParam},organization:{orgParam}, safe:true}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
                 res.redirect('/')
                 session.close()
@@ -96,7 +114,7 @@ app.post('/person/add', function (req, res) {
     }
     else {
         session
-            .run("CREATE(n:other {name:{nameParam},role:{rolParam},organization:{orgParam}}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
+            .run("CREATE(n:other {name:{nameParam},role:{rolParam},organization:{orgParam},safe:true}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
                 res.redirect('/')
                 session.close()
@@ -123,6 +141,7 @@ app.post('/person/del', function (req, res) {
         })
     res.redirect('/')
 })
+
 
 app.post('/person/link', function (req, res) {
     var name1 = req.body.name1;
