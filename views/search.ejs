@@ -30,7 +30,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="./index.html"><img
+                            <a class="navbar-brand" href="/"><img
                                     src="img/Screenshot from 2019-06-29 14-03-04.png" class="img-responsive"
                                     style="width: 150px; margin-top: -27px;"></a>
                         </div>
@@ -126,23 +126,23 @@
                         <div class="space"></div>
                         <div id="sendmessage"></div>
                         <div id="errormessage"></div>
-                        <form action="/search" method="post" role="form" class="contactform">
+                        <form action="/search" method="post" role="form"  class="contactform">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control br-radius-zero" id="name"
-                                    placeholder="Your Name" data-msg="Please enter at least 4 chars" />
+                                    placeholder="Your Name" data-msg="Please enter at least 4 chars" data-rule="required" />
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
                                 <label>Role</label>
                                 <input class="form-control br-radius-zero" type="text" name="role"
-                                    data-msg="Enter your role" placeholder="Your Role"></input>
+                                    data-msg="Enter your role" placeholder="Your Role" data-rule="required"></input>
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
                                 <label>Organization</label>
                                 <input class="form-control br-radius-zero" type="text" name="org"
-                                    data-msg="Enter your Organization" placeholder="Your Oragnization"></input>
+                                    data-msg="Enter your Organization" placeholder="Your Oragnization" data-rule="required"></input>
                                 <div class="validation"></div>
                             </div>
                             <div class="form-action">
@@ -155,17 +155,26 @@
         </div>
     </section>
 
-    <h1>Information</h1>
-    <ul>
-        <% people.forEach(function(person){ %>
-        <li>
-            <i class="fa fa-circle"></i>&nbsp;&nbsp;
-            <%= person.title %><br>
-            <label>Safe : </label>
-            <%= person.safe%><br>
-        </li>
-        <% }) %>
-    </ul>
+    <section id="results" class="section-padding">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-8 col-sm-8 marb20">
+                         <h1>Results</h1>
+                         <h4>(Information will be displayed here)</h4><br>
+                             <ul>
+                                <% people.forEach(function(person){ %>
+                                    <li>
+                                    <i class="fa fa-circle"></i>&nbsp;&nbsp;
+                                    <%= person.title %><br>
+                                    <label>Safe : </label>
+                                    <%= person.safe%><br>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+    </section>
 
     <footer id="footer">
         <div class="top-footer">

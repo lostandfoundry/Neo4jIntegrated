@@ -99,7 +99,6 @@ jQuery(document).ready(function ($) {
       url: action,
       data: str,
       success: function (msg) {
-        alert("Task carried out successfully! Save information?")
         document.location.reload()
       }
     });

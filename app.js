@@ -87,7 +87,6 @@ app.post('/search',function(req,res){
                     safe: record._fields[0].properties.safe
                 })
             })
-
             res.render('search.ejs', {
                 people: peopleArr
             })
@@ -104,7 +103,7 @@ app.post('/claim/person/person', function (req, res) {
     var custommsg = req.body.custommsg;
 
     session
-        .run("MATCH (n { name: {nameParam} }) SET n.safe = true", { nameParam: name })
+        .run("MATCH (n { name: {nameParam}, geo:{geoParam} }) SET n.safe = true", { nameParam: name, geoParam:geo })
         .then(function (result) {
             console.log(result)
             res.redirect('/claim#about')
@@ -119,16 +118,17 @@ app.post('/person/add', function (req, res) {
     var rol1 = req.body.role
     var org1 = req.body.org;
     var type1 = req.body.type;
+    var geo = req.body.geo;
+    var email = req.body.email;
 
     if (type1 === "person") {
         session
-            .run("CREATE(n:person {name:{nameParam},role:{rolParam},organization:{orgParam}, safe:true}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
+            .run("CREATE(n:person {name:{nameParam},role:{rolParam},organization:{orgParam}, geo:{geoParam}, email:{emailParam}, safe:true}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1, geoParam:geo, emailParam: email })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#results')
                 session.close()
             })
             .catch(function (err) {
-                res.redirect('/')
                 console.log(err)
             })
     }
@@ -136,7 +136,7 @@ app.post('/person/add', function (req, res) {
         session
             .run("CREATE(n:pet {name:{nameParam},role:{rolParam},organization:{orgParam}, safe:true}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#results')
                 session.close()
             })
             .catch(function (err) {
@@ -147,7 +147,7 @@ app.post('/person/add', function (req, res) {
         session
             .run("CREATE(n:other {name:{nameParam},role:{rolParam},organization:{orgParam},safe:true}) RETURN n", { rolParam: rol1, nameParam: name1, orgParam: org1 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#results')
                 session.close()
             })
             .catch(function (err) {
@@ -164,7 +164,7 @@ app.post('/person/del', function (req, res) {
     session
         .run("MATCH (n { name: {nameParam1} })-[r]->(k {name: {nameParam2}}) DELETE r", { nameParam1: name1, nameParam2: name2 })
         .then(function (result) {
-            res.redirect('/')
+            res.redirect('/populate#results')
             session.close()
         })
         .catch(function (err) {
@@ -183,7 +183,7 @@ app.post('/person/link', function (req, res) {
         session
             .run("MATCH (a:person),(b:person) WHERE a.name = {name1Param} AND b.name = {name2Param} CREATE (a)-[r:friend]->(b)", { name1Param: name1, name2Param: name2 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#about')
                 session.close()
             })
             .catch(function (err) {
@@ -193,7 +193,7 @@ app.post('/person/link', function (req, res) {
         session
             .run("MATCH (a:person),(b:person) WHERE a.name = {name1Param} AND b.name = {name2Param} CREATE (a)-[r:relative]->(b)", { name1Param: name1, name2Param: name2 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#about')
                 session.close()
             })
             .catch(function (err) {
@@ -203,7 +203,7 @@ app.post('/person/link', function (req, res) {
         session
             .run("MATCH (a:person),(b:person) WHERE a.name = {name1Param} AND b.name = {name2Param} CREATE (a)-[r:neighbour]->(b)", { name1Param: name1, name2Param: name2 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#about')
                 session.close()
             })
             .catch(function (err) {
@@ -213,7 +213,7 @@ app.post('/person/link', function (req, res) {
         session
             .run("MATCH (a:person),(b:person) WHERE a.name = {name1Param} AND b.name = {name2Param} CREATE (a)-[r:colleague]->(b)", { name1Param: name1, name2Param: name2 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#about')
                 session.close()
             })
             .catch(function (err) {
@@ -223,7 +223,7 @@ app.post('/person/link', function (req, res) {
         session
             .run("MATCH (a:person),(b:pet) WHERE a.name = {name1Param} AND b.name = {name2Param} CREATE (a)-[r:owner]->(b)", { name1Param: name1, name2Param: name2 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#about')
                 session.close()
             })
             .catch(function (err) {
@@ -233,7 +233,7 @@ app.post('/person/link', function (req, res) {
         session
             .run("MATCH (a:person),(b:person) WHERE a.name = {name1Param} AND b.name = {name2Param} CREATE (a)-[r:other]->(b)", { name1Param: name1, name2Param: name2 })
             .then(function (result) {
-                res.redirect('/')
+                res.redirect('/populate#about')
                 session.close()
             })
             .catch(function (err) {

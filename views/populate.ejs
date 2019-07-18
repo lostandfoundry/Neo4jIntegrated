@@ -1,3 +1,9 @@
+<!--
+  Code contributed by Nimish Bongale and team 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +31,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="./index.ejs"><img
+                            <a class="navbar-brand" href="/"><img
                                     src="/img/Screenshot from 2019-06-29 14-03-04.png" class="img-responsive"
                                     style="width: 150px; margin-top: -27px;"></a>
                         </div>
@@ -146,7 +152,7 @@
         </div>
     </section>
 
-    <section id="contact" class="section-padding">
+    <section id="addpeep" class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -169,7 +175,6 @@
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
-
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control br-radius-zero" id="name"
                                     placeholder="Your Name" data-rule="minlen:4"
@@ -194,8 +199,15 @@
                                     data-msg="Enter your Organization" placeholder="Your Oragnization"></input>
                                 <div class="validation"></div>
                             </div>
+                            <div class="form-group">
+                                    <label>Geo-location</label>
+                                    <input type="text" name="geo" class="form-control br-radius-zero" id="geo"
+                                        placeholder="Your Geographic location" data-rule="required"
+                                        data-msg="Field cannot be left blank" />
+                                    <div class="validation"></div>
+                                </div>
                             <div class="form-action">
-                                <button type="submit" value="submit" class="btn btn-form">Create node</button>
+                                <button type="submit" value="submit" class="btn btn-form" id="singlesubmit">Create node</button>
                             </div>
                         </form>
                     </div>
@@ -295,18 +307,30 @@
         </div>
     </section>
 
-    <h1>Information</h1>
-    <ul>
-        <% people.forEach(function(person){ %>
-        <li>
-            <i class="fa fa-circle"></i>&nbsp;&nbsp;
-            <%= person.title %><br>
-            <%= person.role %><br>
-            <%= person.org %><br><br>
-        </li>
-        <% }) %>
-    </ul>
-
+    <section id="results" class="section-padding">
+            <div class="container">
+                <div class="row">
+                        <div class="col-md-8 col-sm-8 marb20">
+                             <h1>Results</h1>
+                             <h4>(Information will be displayed here)</h4><br>
+                                 <ul>
+                                    <% people.forEach(function(person){ %>
+                                        <li>
+                                        <i class="fa fa-circle"></i>&nbsp;&nbsp;
+                                        <label>Name: </label>
+                                        <%= person.title %><br>
+                                        <label>Role: </label>
+                                        <%= person.role %><br>
+                                        <label>Organization: </label>
+                                        <%= person.org %><br>
+                                        </li><br>
+                                    <% }) %>
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    
     <footer id="footer">
         <div class="top-footer">
             <div class="container">
@@ -355,4 +379,4 @@
     <script src="/contactform/contactform.js"></script>
 </body>
 
-</html>
+</html> 
