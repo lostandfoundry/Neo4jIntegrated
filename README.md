@@ -16,11 +16,9 @@ Run
 
 ```node
 npm install 
-```
 
 OR
 
-```node
 sudo npm install
 ```
 
