@@ -1,7 +1,7 @@
 # Neo4jIntegrated
 
 A BackEnd stateful application providing integration services and drivers to interact with the Neo4j Graph Database, running on 
-![grapheneDB](https://www.graphenedb.com/).
+[grapheneDB](https://www.graphenedb.com/).
 
 ## Installation
 
@@ -32,6 +32,8 @@ npm start
 OR
 
 node app.js
+```
+
 Open ```localhost:3000``` in your browser to view the application.
 
 ## Usage
